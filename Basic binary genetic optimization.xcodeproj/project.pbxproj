@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AD0C010E1B794AA100D14619 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0C010D1B794AA100D14619 /* main.swift */; };
+		AD0C01151B7A4D3A00D14619 /* Boolean List.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0C01141B7A4D3A00D14619 /* Boolean List.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		AD0C010A1B794AA100D14619 /* Basic binary genetic optimization */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Basic binary genetic optimization"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD0C010D1B794AA100D14619 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		AD0C01141B7A4D3A00D14619 /* Boolean List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Boolean List.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				AD0C010D1B794AA100D14619 /* main.swift */,
+				AD0C01141B7A4D3A00D14619 /* Boolean List.swift */,
 			);
 			path = "Basic binary genetic optimization";
 			sourceTree = "<group>";
@@ -119,6 +122,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD0C010E1B794AA100D14619 /* main.swift in Sources */,
+				AD0C01151B7A4D3A00D14619 /* Boolean List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +240,7 @@
 				AD0C01131B794AA100D14619 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
