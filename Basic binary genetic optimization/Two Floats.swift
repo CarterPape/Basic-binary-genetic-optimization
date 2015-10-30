@@ -8,6 +8,9 @@
 
 import Foundation
 
+let NUM1_GOAL: Float = 600
+let NUM2_GOAL: Float = -200
+
 struct TwoFloats: ZeroArgumentInitable, CustomStringConvertible {
     var num1: Float = 0
     var num2: Float = 0

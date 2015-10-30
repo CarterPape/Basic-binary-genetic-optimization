@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AD0C010E1B794AA100D14619 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0C010D1B794AA100D14619 /* main.swift */; };
 		AD0C01151B7A4D3A00D14619 /* Boolean List.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0C01141B7A4D3A00D14619 /* Boolean List.swift */; };
+		AD11C28B1BE3BD170088A7A7 /* Evolutionary Optimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD11C28A1BE3BD170088A7A7 /* Evolutionary Optimizer.swift */; };
 		ADBC51261BE25E89007FF76F /* Function Fit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC51251BE25E89007FF76F /* Function Fit.swift */; };
 		ADBC51281BE26543007FF76F /* Two Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC51271BE26543007FF76F /* Two Floats.swift */; };
 /* End PBXBuildFile section */
@@ -29,6 +30,7 @@
 		AD0C010A1B794AA100D14619 /* Basic binary genetic optimization */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Basic binary genetic optimization"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD0C010D1B794AA100D14619 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		AD0C01141B7A4D3A00D14619 /* Boolean List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Boolean List.swift"; sourceTree = "<group>"; };
+		AD11C28A1BE3BD170088A7A7 /* Evolutionary Optimizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Evolutionary Optimizer.swift"; sourceTree = "<group>"; };
 		ADBC51251BE25E89007FF76F /* Function Fit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Function Fit.swift"; sourceTree = "<group>"; };
 		ADBC51271BE26543007FF76F /* Two Floats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Two Floats.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				AD0C010D1B794AA100D14619 /* main.swift */,
+				AD11C28A1BE3BD170088A7A7 /* Evolutionary Optimizer.swift */,
 				ADBC51271BE26543007FF76F /* Two Floats.swift */,
 				ADBC51251BE25E89007FF76F /* Function Fit.swift */,
 				AD0C01141B7A4D3A00D14619 /* Boolean List.swift */,
@@ -132,6 +135,7 @@
 				AD0C010E1B794AA100D14619 /* main.swift in Sources */,
 				AD0C01151B7A4D3A00D14619 /* Boolean List.swift in Sources */,
 				ADBC51281BE26543007FF76F /* Two Floats.swift in Sources */,
+				AD11C28B1BE3BD170088A7A7 /* Evolutionary Optimizer.swift in Sources */,
 				ADBC51261BE25E89007FF76F /* Function Fit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
