@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		AD0C010E1B794AA100D14619 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0C010D1B794AA100D14619 /* main.swift */; };
 		AD0C01151B7A4D3A00D14619 /* Boolean List.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0C01141B7A4D3A00D14619 /* Boolean List.swift */; };
+		ADBC51261BE25E89007FF76F /* Function Fit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC51251BE25E89007FF76F /* Function Fit.swift */; };
+		ADBC51281BE26543007FF76F /* Two Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC51271BE26543007FF76F /* Two Floats.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +29,8 @@
 		AD0C010A1B794AA100D14619 /* Basic binary genetic optimization */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Basic binary genetic optimization"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD0C010D1B794AA100D14619 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		AD0C01141B7A4D3A00D14619 /* Boolean List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Boolean List.swift"; sourceTree = "<group>"; };
+		ADBC51251BE25E89007FF76F /* Function Fit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Function Fit.swift"; sourceTree = "<group>"; };
+		ADBC51271BE26543007FF76F /* Two Floats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Two Floats.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 			isa = PBXGroup;
 			children = (
 				AD0C010D1B794AA100D14619 /* main.swift */,
+				ADBC51271BE26543007FF76F /* Two Floats.swift */,
+				ADBC51251BE25E89007FF76F /* Function Fit.swift */,
 				AD0C01141B7A4D3A00D14619 /* Boolean List.swift */,
 			);
 			path = "Basic binary genetic optimization";
@@ -91,7 +97,9 @@
 		AD0C01021B794AA100D14619 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0710;
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Carter Pape";
 				TargetAttributes = {
 					AD0C01091B794AA100D14619 = {
@@ -123,6 +131,8 @@
 			files = (
 				AD0C010E1B794AA100D14619 /* main.swift in Sources */,
 				AD0C01151B7A4D3A00D14619 /* Boolean List.swift in Sources */,
+				ADBC51281BE26543007FF76F /* Two Floats.swift in Sources */,
+				ADBC51261BE25E89007FF76F /* Function Fit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +159,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

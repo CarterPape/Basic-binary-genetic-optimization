@@ -24,7 +24,7 @@ struct BoolList {
             _boolList = 0
             var n: UInt8 = 0
             for bitAsBool in newList {
-                var bitaAsUInt8: UInt8 = bitAsBool ? 1 : 0
+                let bitaAsUInt8: UInt8 = bitAsBool ? 1 : 0
                 _boolList |= bitaAsUInt8 << n
                 n += 1
             }
