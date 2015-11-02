@@ -14,7 +14,7 @@ print(STRONG_SURVIVORS, SAMPLE_SIZE, MUTATION_CHANCE_INVERSE, NUM1_GOAL, NUM2_GO
 
 for n in 1...20 {
     var optimizer = EvolutionaryOptimizer<PolyCoefficients, Double>(
-        fitnessFunction: PCFitnessCalculator.populationFitness,
+        individualFitnessFunction: PCFitnessCalculator.fitness,
         comparator: { $0.fitness > $1.fitness && $0.fitness.isNormal })
     
     print(optimizer.evolve())

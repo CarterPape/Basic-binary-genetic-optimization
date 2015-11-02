@@ -30,28 +30,49 @@ protocol ZeroArgumentInitable {
     init()
 }
 
-class EvolutionaryOptimizer<ValueType: ZeroArgumentInitable, FitnessType: Comparable> {
-    typealias ComparatorType = (Individual<ValueType, FitnessType>, Individual<ValueType, FitnessType>) -> Bool
-    typealias FitnessFunctionType = [ValueType] -> [Individual<ValueType, FitnessType>]
-    var population = [Individual<ValueType, FitnessType>]()
-    var fitnessFunction: FitnessFunctionType
-    var comparator: ComparatorType = { $0.fitness > $1.fitness }
+class EvolutionaryOptimizer<Value: ZeroArgumentInitable, Fitness: Comparable> {
+    typealias PopulationIndividual = Individual<Value, Fitness>
+    typealias Comparator = (PopulationIndividual, PopulationIndividual) -> Bool
+    typealias SingleFitnessFunction = Value -> Fitness
+    typealias PopulationFitnessFunction = [Value] -> [PopulationIndividual]
+    var population = [PopulationIndividual]()
+    var populationFitnessFunction: PopulationFitnessFunction
+    var comparator: Comparator = { $0.fitness > $1.fitness }
     
     internal func generatePopulation() {
-        var populationValues = [ValueType]()
+        var populationValues = [Value]()
         for _ in 1...POPULATION_SIZE {
-            populationValues.append(Individual<ValueType, FitnessType>.randomValue())
+            populationValues.append(PopulationIndividual.randomValue())
         }
-        population = self.fitnessFunction(populationValues)
+        population = self.populationFitnessFunction(populationValues)
     }
     
-    internal init(fitnessFunction: FitnessFunctionType) {
-        self.fitnessFunction = fitnessFunction
+    internal static func mappedFitnessFunction(individualFitnessFunction: SingleFitnessFunction) -> PopulationFitnessFunction {
+        let functionToMap = { (value: Value) -> PopulationIndividual in
+            return PopulationIndividual(value: value, fitness: individualFitnessFunction(value))
+        }
+        return { (values: [Value]) -> [PopulationIndividual] in
+            return values.map(functionToMap)
+        }
+    }
+    
+    convenience init(individualFitnessFunction: SingleFitnessFunction) {
+        let populationFitnessFunction = self.dynamicType.mappedFitnessFunction(individualFitnessFunction)
+        self.init(populationFitnessFunction: populationFitnessFunction)
+    }
+    
+    convenience init(individualFitnessFunction: SingleFitnessFunction, comparator: Comparator) {
+        let populationFitnessFunction = self.dynamicType.mappedFitnessFunction(individualFitnessFunction)
+        self.init(populationFitnessFunction: populationFitnessFunction, comparator: comparator)
+    }
+    
+    init(populationFitnessFunction: PopulationFitnessFunction) {
+        self.populationFitnessFunction = populationFitnessFunction
         generatePopulation()
     }
     
-    internal init(fitnessFunction: FitnessFunctionType, comparator: ComparatorType) {
-        self.fitnessFunction = fitnessFunction
+    init(populationFitnessFunction: PopulationFitnessFunction, comparator: Comparator) {
+        self.populationFitnessFunction = populationFitnessFunction
         self.comparator = comparator
         generatePopulation()
     }
@@ -64,10 +85,10 @@ class EvolutionaryOptimizer<ValueType: ZeroArgumentInitable, FitnessType: Compar
             let offspring = Reproducer.reproduce(sample[0].value, sample[1].value)
             newPopulationValues.append(offspring)
         }
-        population = fitnessFunction(newPopulationValues)
+        population = populationFitnessFunction(newPopulationValues)
     }
     
-    func evolve() -> (generations: Int, strongestIndividual: Individual<ValueType, FitnessType>) {
+    func evolve() -> (generations: Int, strongestIndividual: Individual<Value, Fitness>) {
         var currentGeneration = 1
         var currentStrongest = strongestIndividual
         var recordSettingGeneration = currentGeneration
@@ -85,25 +106,25 @@ class EvolutionaryOptimizer<ValueType: ZeroArgumentInitable, FitnessType: Compar
         return (generations: currentGeneration, strongestIndividual: currentStrongest)
     }
     
-    var strongestIndividual: Individual<ValueType, FitnessType> {
+    var strongestIndividual: Individual<Value, Fitness> {
         return population.minElement(comparator)!
     }
 }
 
-struct Individual<ValueType: ZeroArgumentInitable, FitnessType: Comparable>: CustomStringConvertible {
-    let value: ValueType
-    let fitness: FitnessType
+struct Individual<Value: ZeroArgumentInitable, Fitness: Comparable>: CustomStringConvertible {
+    let value: Value
+    let fitness: Fitness
     
-    init(value: ValueType, fitness: FitnessType) {
+    init(value: Value, fitness: Fitness) {
         self.value = value
         self.fitness = fitness
     }
     
-    static func randomValue() -> ValueType {
-        let data = NSMutableData(length: sizeof(ValueType))
-        var newValue = ValueType()
-        SecRandomCopyBytes(kSecRandomDefault, sizeof(ValueType), UnsafeMutablePointer<UInt8>(data!.mutableBytes))
-        data!.getBytes(&newValue, length: sizeof(ValueType))
+    static func randomValue() -> Value {
+        let data = NSMutableData(length: sizeof(Value))
+        var newValue = Value()
+        SecRandomCopyBytes(kSecRandomDefault, sizeof(Value), UnsafeMutablePointer<UInt8>(data!.mutableBytes))
+        data!.getBytes(&newValue, length: sizeof(Value))
         return newValue
     }
     
@@ -112,16 +133,16 @@ struct Individual<ValueType: ZeroArgumentInitable, FitnessType: Comparable>: Cus
     }
 }
 
-class Reproducer<ValueType: ZeroArgumentInitable> {
-    static func reproduce(parent1: ValueType, _ parent2: ValueType) -> ValueType {
+class Reproducer<Value: ZeroArgumentInitable> {
+    static func reproduce(parent1: Value, _ parent2: Value) -> Value {
         var parent1Copy = parent1
         var parent2Copy = parent2
-        let parent1Data = NSData(bytes: &parent1Copy, length: sizeof(ValueType))
-        let parent2Data = NSData(bytes: &parent2Copy, length: sizeof(ValueType))
+        let parent1Data = NSData(bytes: &parent1Copy, length: sizeof(Value))
+        let parent2Data = NSData(bytes: &parent2Copy, length: sizeof(Value))
         let newData = NSMutableData(data: parent1Data)
-        var newValue = ValueType()
+        var newValue = Value()
         
-        for n in 0..<sizeof(ValueType) {
+        for n in 0..<sizeof(Value) {
             if arc4random_uniform(MUTATION_CHANCE_INVERSE) == 1 {
                 let range = NSRange(n...n)
                 var newByte: UInt8 = UInt8(arc4random() % UInt32(UINT8_MAX + 1))
@@ -135,7 +156,7 @@ class Reproducer<ValueType: ZeroArgumentInitable> {
             }
         }
         
-        newData.getBytes(&newValue, length: sizeof(ValueType))
+        newData.getBytes(&newValue, length: sizeof(Value))
         return newValue
     }
 }
