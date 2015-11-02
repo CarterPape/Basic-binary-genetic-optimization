@@ -23,6 +23,10 @@ struct PolyCoefficients: ZeroArgumentInitable, CustomStringConvertible {
 }
 
 class PCFitnessCalculator {
+    static func populationFitness(values: [PolyCoefficients]) -> [Individual<PolyCoefficients, Double>] {
+        return values.map({ return Individual<PolyCoefficients, Double>(value: $0, fitness: fitness($0)) })
+    }
+    
     static func fitness(coefficients: PolyCoefficients) -> Double {
         let polynomialFunction = {
             (x: Double) -> Double in

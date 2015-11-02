@@ -32,37 +32,39 @@ protocol ZeroArgumentInitable {
 
 class EvolutionaryOptimizer<ValueType: ZeroArgumentInitable, FitnessType: Comparable> {
     typealias ComparatorType = (Individual<ValueType, FitnessType>, Individual<ValueType, FitnessType>) -> Bool
+    typealias FitnessFunctionType = [ValueType] -> [Individual<ValueType, FitnessType>]
     var population = [Individual<ValueType, FitnessType>]()
-    var fitnessFunction: (ValueType) -> FitnessType
+    var fitnessFunction: FitnessFunctionType
     var comparator: ComparatorType = { $0.fitness > $1.fitness }
     
-    private func generatePopulation() {
+    internal func generatePopulation() {
+        var populationValues = [ValueType]()
         for _ in 1...POPULATION_SIZE {
-            population.append(Individual<ValueType, FitnessType>(fitnessMeasure: fitnessFunction))
+            populationValues.append(Individual<ValueType, FitnessType>.randomValue())
         }
+        population = self.fitnessFunction(populationValues)
     }
     
-    init(fitnessFunction: (ValueType) -> FitnessType) {
+    internal init(fitnessFunction: FitnessFunctionType) {
         self.fitnessFunction = fitnessFunction
         generatePopulation()
     }
     
-    init(fitnessFunction: (ValueType) -> FitnessType, comparator: ComparatorType) {
+    internal init(fitnessFunction: FitnessFunctionType, comparator: ComparatorType) {
         self.fitnessFunction = fitnessFunction
-        generatePopulation()
         self.comparator = comparator
+        generatePopulation()
     }
     
     func newGeneration() {
         population.sortInPlace(comparator)
-        var newPopulation = Array(population[0..<STRONG_SURVIVORS])
-        // print(newPopulation[0])
+        var newPopulationValues = population[0..<STRONG_SURVIVORS].flatMap({ $0.value })
         for _ in STRONG_SURVIVORS..<POPULATION_SIZE {
             var sample = population.sample(SAMPLE_SIZE).sort(comparator)
-            let offspring = Reproducer.reproduce(sample[0], sample[1])
-            newPopulation.append(offspring)
+            let offspring = Reproducer.reproduce(sample[0].value, sample[1].value)
+            newPopulationValues.append(offspring)
         }
-        population = newPopulation
+        population = fitnessFunction(newPopulationValues)
     }
     
     func evolve() -> (generations: Int, strongestIndividual: Individual<ValueType, FitnessType>) {
@@ -88,29 +90,21 @@ class EvolutionaryOptimizer<ValueType: ZeroArgumentInitable, FitnessType: Compar
     }
 }
 
-class Individual<ValueType: ZeroArgumentInitable, FitnessType: Comparable>: CustomStringConvertible {
+struct Individual<ValueType: ZeroArgumentInitable, FitnessType: Comparable>: CustomStringConvertible {
     let value: ValueType
     let fitness: FitnessType
-    let fitnessMeasure: (ValueType) -> FitnessType
     
-    init(value: ValueType, fitnessMeasure: (ValueType) -> FitnessType) {
+    init(value: ValueType, fitness: FitnessType) {
         self.value = value
-        self.fitnessMeasure = fitnessMeasure
-        self.fitness = fitnessMeasure(value)
+        self.fitness = fitness
     }
     
-    init(fitnessMeasure: (ValueType) -> FitnessType) {
-        self.fitnessMeasure = fitnessMeasure
+    static func randomValue() -> ValueType {
         let data = NSMutableData(length: sizeof(ValueType))
-        SecRandomCopyBytes(kSecRandomDefault, sizeof(ValueType), UnsafeMutablePointer<UInt8>(data!.mutableBytes))
-        
         var newValue = ValueType()
-        
+        SecRandomCopyBytes(kSecRandomDefault, sizeof(ValueType), UnsafeMutablePointer<UInt8>(data!.mutableBytes))
         data!.getBytes(&newValue, length: sizeof(ValueType))
-        
-        self.value = newValue
-        
-        self.fitness = fitnessMeasure(value)
+        return newValue
     }
     
     var description: String {
@@ -118,32 +112,30 @@ class Individual<ValueType: ZeroArgumentInitable, FitnessType: Comparable>: Cust
     }
 }
 
-class Reproducer<ValueType: ZeroArgumentInitable, FitnessType: Comparable> {
-    static func reproduce(parent1: Individual<ValueType, FitnessType>,
-        _ parent2: Individual<ValueType, FitnessType>)
-        -> Individual<ValueType, FitnessType> {
-            var val1 = parent1.value
-            var val2 = parent2.value
-            let parent1Data = NSData(bytes: &val1, length: sizeof(ValueType))
-            let parent2Data = NSData(bytes: &val2, length: sizeof(ValueType))
-            let newData = NSMutableData(data: parent1Data)
-            var newValue = ValueType()
-            
-            for n in 0..<sizeof(ValueType) {
-                if arc4random_uniform(MUTATION_CHANCE_INVERSE) == 1 {
-                    let range = NSRange(n...n)
-                    var newByte: UInt8 = UInt8(arc4random() % UInt32(UINT8_MAX + 1))
-                    newData.replaceBytesInRange(range, withBytes: &newByte)
-                }
-                else if arc4random() % 2 == 0 {
-                    let range = NSRange(n...n)
-                    var newByte: UInt8 = 0
-                    parent2Data.getBytes(&newByte, range: range)
-                    newData.replaceBytesInRange(range, withBytes: &newByte)
-                }
+class Reproducer<ValueType: ZeroArgumentInitable> {
+    static func reproduce(parent1: ValueType, _ parent2: ValueType) -> ValueType {
+        var parent1Copy = parent1
+        var parent2Copy = parent2
+        let parent1Data = NSData(bytes: &parent1Copy, length: sizeof(ValueType))
+        let parent2Data = NSData(bytes: &parent2Copy, length: sizeof(ValueType))
+        let newData = NSMutableData(data: parent1Data)
+        var newValue = ValueType()
+        
+        for n in 0..<sizeof(ValueType) {
+            if arc4random_uniform(MUTATION_CHANCE_INVERSE) == 1 {
+                let range = NSRange(n...n)
+                var newByte: UInt8 = UInt8(arc4random() % UInt32(UINT8_MAX + 1))
+                newData.replaceBytesInRange(range, withBytes: &newByte)
             }
-            
-            newData.getBytes(&newValue, length: sizeof(ValueType))
-            return Individual(value: newValue, fitnessMeasure: parent1.fitnessMeasure)
+            else if arc4random() % 2 == 0 {
+                let range = NSRange(n...n)
+                var newByte: UInt8 = 0
+                parent2Data.getBytes(&newByte, range: range)
+                newData.replaceBytesInRange(range, withBytes: &newByte)
+            }
+        }
+        
+        newData.getBytes(&newValue, length: sizeof(ValueType))
+        return newValue
     }
 }
