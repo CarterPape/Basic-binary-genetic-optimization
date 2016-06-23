@@ -123,7 +123,7 @@ class EvolutionaryOptimizer<Value: ZeroArgumentInitable, Fitness: Comparable> {
                 currentStrongest = newStrongest
                 recordSettingGeneration = currentGeneration
             }
-            currentGeneration++
+            currentGeneration += 1
         }
         
         return (generations: currentGeneration, strongestIndividual: currentStrongest)
@@ -158,11 +158,12 @@ struct Individual<Value: ZeroArgumentInitable, Fitness: Comparable>: CustomStrin
 
 class Reproducer<Value: ZeroArgumentInitable> {
     static func reproduce(parent1: Value, _ parent2: Value) -> Value {
-        var parent1Copy = parent1
-        var parent2Copy = parent2
-        let parent1Data = NSData(bytes: &parent1Copy, length: sizeof(Value))
-        let parent2Data = NSData(bytes: &parent2Copy, length: sizeof(Value))
-        let newData = NSMutableData(data: parent1Data)
+        var parent1Accessible = parent1
+        var parent2Accessible = parent2
+        let parent1Data = NSData(bytes: &parent1Accessible, length: sizeof(Value))
+        let parent2Data = NSData(bytes: &parent2Accessible, length: sizeof(Value))
+        
+        let newData = NSMutableData(capacity: sizeof(Value))
         var newValue = Value()
         
         for n in 0..<sizeof(Value) {
@@ -182,7 +183,7 @@ class Reproducer<Value: ZeroArgumentInitable> {
             newData!.replaceBytesInRange(range, withBytes: &newByte)
         }
         
-        newData.getBytes(&newValue, length: sizeof(Value))
+        newData!.getBytes(&newValue, length: sizeof(Value))
         return newValue
     }
 }
