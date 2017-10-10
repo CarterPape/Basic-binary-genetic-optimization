@@ -3,20 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AD0C010E1B794AA100D14619 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0C010D1B794AA100D14619 /* main.swift */; };
-		AD0C01151B7A4D3A00D14619 /* Boolean List.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0C01141B7A4D3A00D14619 /* Boolean List.swift */; };
-		AD11C28B1BE3BD170088A7A7 /* Evolutionary Optimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD11C28A1BE3BD170088A7A7 /* Evolutionary Optimizer.swift */; };
-		ADBC51261BE25E89007FF76F /* Function Fit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC51251BE25E89007FF76F /* Function Fit.swift */; };
-		ADBC51281BE26543007FF76F /* Two Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC51271BE26543007FF76F /* Two Floats.swift */; };
-		ADE644741BE7EC2E000E6E96 /* Centralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE644731BE7EC2E000E6E96 /* Centralization.swift */; };
+		AD99C9A31F8D68E10071A391 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD99C99E1F8D68100071A391 /* main.swift */; };
+		AD99C9A41F8D68EF0071A391 /* Boolean List.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD99C9A11F8D68100071A391 /* Boolean List.swift */; };
+		AD99C9A51F8D68EF0071A391 /* Centralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD99C9A01F8D68100071A391 /* Centralization.swift */; };
+		AD99C9A61F8D68EF0071A391 /* Evolutionary Optimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD99C9A21F8D68100071A391 /* Evolutionary Optimizer.swift */; };
+		AD99C9A71F8D68EF0071A391 /* Function Fit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD99C99D1F8D680F0071A391 /* Function Fit.swift */; };
+		AD99C9A81F8D68EF0071A391 /* Two Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD99C99F1F8D68100071A391 /* Two Floats.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		AD0C01081B794AA100D14619 /* CopyFiles */ = {
+		AD99C9901F8D67D90071A391 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -28,17 +28,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AD0C010A1B794AA100D14619 /* Basic binary genetic optimization */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Basic binary genetic optimization"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD0C010D1B794AA100D14619 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		AD0C01141B7A4D3A00D14619 /* Boolean List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Boolean List.swift"; sourceTree = "<group>"; };
-		AD11C28A1BE3BD170088A7A7 /* Evolutionary Optimizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Evolutionary Optimizer.swift"; sourceTree = "<group>"; };
-		ADBC51251BE25E89007FF76F /* Function Fit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Function Fit.swift"; sourceTree = "<group>"; };
-		ADBC51271BE26543007FF76F /* Two Floats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Two Floats.swift"; sourceTree = "<group>"; };
-		ADE644731BE7EC2E000E6E96 /* Centralization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Centralization.swift; sourceTree = "<group>"; };
+		AD99C9921F8D67D90071A391 /* Basic binary genetic optimization */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Basic binary genetic optimization"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD99C99D1F8D680F0071A391 /* Function Fit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Function Fit.swift"; sourceTree = "<group>"; };
+		AD99C99E1F8D68100071A391 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		AD99C99F1F8D68100071A391 /* Two Floats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Two Floats.swift"; sourceTree = "<group>"; };
+		AD99C9A01F8D68100071A391 /* Centralization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Centralization.swift; sourceTree = "<group>"; };
+		AD99C9A11F8D68100071A391 /* Boolean List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Boolean List.swift"; sourceTree = "<group>"; };
+		AD99C9A21F8D68100071A391 /* Evolutionary Optimizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Evolutionary Optimizer.swift"; sourceTree = "<group>"; };
+		AD99C9A91F8D74120071A391 /* Basic binary genetic optimization-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Basic binary genetic optimization-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AD0C01071B794AA100D14619 /* Frameworks */ = {
+		AD99C98F1F8D67D90071A391 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -48,31 +49,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AD0C01011B794AA100D14619 = {
+		AD99C9891F8D67D90071A391 = {
 			isa = PBXGroup;
 			children = (
-				AD0C010C1B794AA100D14619 /* Basic binary genetic optimization */,
-				AD0C010B1B794AA100D14619 /* Products */,
+				AD99C9941F8D67D90071A391 /* Basic binary genetic optimization */,
+				AD99C9931F8D67D90071A391 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		AD0C010B1B794AA100D14619 /* Products */ = {
+		AD99C9931F8D67D90071A391 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD0C010A1B794AA100D14619 /* Basic binary genetic optimization */,
+				AD99C9921F8D67D90071A391 /* Basic binary genetic optimization */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AD0C010C1B794AA100D14619 /* Basic binary genetic optimization */ = {
+		AD99C9941F8D67D90071A391 /* Basic binary genetic optimization */ = {
 			isa = PBXGroup;
 			children = (
-				AD0C010D1B794AA100D14619 /* main.swift */,
-				AD11C28A1BE3BD170088A7A7 /* Evolutionary Optimizer.swift */,
-				ADBC51271BE26543007FF76F /* Two Floats.swift */,
-				ADBC51251BE25E89007FF76F /* Function Fit.swift */,
-				AD0C01141B7A4D3A00D14619 /* Boolean List.swift */,
-				ADE644731BE7EC2E000E6E96 /* Centralization.swift */,
+				AD99C9A91F8D74120071A391 /* Basic binary genetic optimization-Bridging-Header.h */,
+				AD99C9A11F8D68100071A391 /* Boolean List.swift */,
+				AD99C9A01F8D68100071A391 /* Centralization.swift */,
+				AD99C9A21F8D68100071A391 /* Evolutionary Optimizer.swift */,
+				AD99C99D1F8D680F0071A391 /* Function Fit.swift */,
+				AD99C99F1F8D68100071A391 /* Two Floats.swift */,
+				AD99C99E1F8D68100071A391 /* main.swift */,
 			);
 			path = "Basic binary genetic optimization";
 			sourceTree = "<group>";
@@ -80,13 +82,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AD0C01091B794AA100D14619 /* Basic binary genetic optimization */ = {
+		AD99C9911F8D67D90071A391 /* Basic binary genetic optimization */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD0C01111B794AA100D14619 /* Build configuration list for PBXNativeTarget "Basic binary genetic optimization" */;
+			buildConfigurationList = AD99C9991F8D67D90071A391 /* Build configuration list for PBXNativeTarget "Basic binary genetic optimization" */;
 			buildPhases = (
-				AD0C01061B794AA100D14619 /* Sources */,
-				AD0C01071B794AA100D14619 /* Frameworks */,
-				AD0C01081B794AA100D14619 /* CopyFiles */,
+				AD99C98E1F8D67D90071A391 /* Sources */,
+				AD99C98F1F8D67D90071A391 /* Frameworks */,
+				AD99C9901F8D67D90071A391 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -94,81 +96,95 @@
 			);
 			name = "Basic binary genetic optimization";
 			productName = "Basic binary genetic optimization";
-			productReference = AD0C010A1B794AA100D14619 /* Basic binary genetic optimization */;
+			productReference = AD99C9921F8D67D90071A391 /* Basic binary genetic optimization */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		AD0C01021B794AA100D14619 /* Project object */ = {
+		AD99C98A1F8D67D90071A391 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftMigration = 0710;
-				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Carter Pape";
 				TargetAttributes = {
-					AD0C01091B794AA100D14619 = {
-						CreatedOnToolsVersion = 6.4;
+					AD99C9911F8D67D90071A391 = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = AD0C01051B794AA100D14619 /* Build configuration list for PBXProject "Basic binary genetic optimization" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			buildConfigurationList = AD99C98D1F8D67D90071A391 /* Build configuration list for PBXProject "Basic binary genetic optimization" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = AD0C01011B794AA100D14619;
-			productRefGroup = AD0C010B1B794AA100D14619 /* Products */;
+			mainGroup = AD99C9891F8D67D90071A391;
+			productRefGroup = AD99C9931F8D67D90071A391 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AD0C01091B794AA100D14619 /* Basic binary genetic optimization */,
+				AD99C9911F8D67D90071A391 /* Basic binary genetic optimization */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AD0C01061B794AA100D14619 /* Sources */ = {
+		AD99C98E1F8D67D90071A391 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD0C010E1B794AA100D14619 /* main.swift in Sources */,
-				AD0C01151B7A4D3A00D14619 /* Boolean List.swift in Sources */,
-				ADBC51281BE26543007FF76F /* Two Floats.swift in Sources */,
-				AD11C28B1BE3BD170088A7A7 /* Evolutionary Optimizer.swift in Sources */,
-				ADE644741BE7EC2E000E6E96 /* Centralization.swift in Sources */,
-				ADBC51261BE25E89007FF76F /* Function Fit.swift in Sources */,
+				AD99C9A81F8D68EF0071A391 /* Two Floats.swift in Sources */,
+				AD99C9A31F8D68E10071A391 /* main.swift in Sources */,
+				AD99C9A51F8D68EF0071A391 /* Centralization.swift in Sources */,
+				AD99C9A41F8D68EF0071A391 /* Boolean List.swift in Sources */,
+				AD99C9A71F8D68EF0071A391 /* Function Fit.swift in Sources */,
+				AD99C9A61F8D68EF0071A391 /* Evolutionary Optimizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		AD0C010F1B794AA100D14619 /* Debug */ = {
+		AD99C9971F8D67D90071A391 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -176,43 +192,56 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		AD0C01101B794AA100D14619 /* Release */ = {
+		AD99C9981F8D67D90071A391 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -220,48 +249,64 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
-		AD0C01121B794AA100D14619 /* Debug */ = {
+		AD99C99A1F8D67D90071A391 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Basic binary genetic optimization/Basic binary genetic optimization-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
-		AD0C01131B794AA100D14619 /* Release */ = {
+		AD99C99B1F8D67D90071A391 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Basic binary genetic optimization/Basic binary genetic optimization-Bridging-Header.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AD0C01051B794AA100D14619 /* Build configuration list for PBXProject "Basic binary genetic optimization" */ = {
+		AD99C98D1F8D67D90071A391 /* Build configuration list for PBXProject "Basic binary genetic optimization" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AD0C010F1B794AA100D14619 /* Debug */,
-				AD0C01101B794AA100D14619 /* Release */,
+				AD99C9971F8D67D90071A391 /* Debug */,
+				AD99C9981F8D67D90071A391 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD0C01111B794AA100D14619 /* Build configuration list for PBXNativeTarget "Basic binary genetic optimization" */ = {
+		AD99C9991F8D67D90071A391 /* Build configuration list for PBXNativeTarget "Basic binary genetic optimization" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AD0C01121B794AA100D14619 /* Debug */,
-				AD0C01131B794AA100D14619 /* Release */,
+				AD99C99A1F8D67D90071A391 /* Debug */,
+				AD99C99B1F8D67D90071A391 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = AD0C01021B794AA100D14619 /* Project object */;
+	rootObject = AD99C98A1F8D67D90071A391 /* Project object */;
 }

@@ -29,21 +29,25 @@ class PCFitnessCalculator {
         return values.map({ return Individual<PolyCoefficients, Double>(value: $0, fitness: fitness($0)) })
     }
     
-    static func fitness(coefficients: PolyCoefficients) -> Double {
+    static func fitness(_ coefficients: PolyCoefficients) -> Double {
         let polynomialFunction = {
             (x: Double) -> Double in
-            return Double(coefficients.a) * x * x * x * x + Double(coefficients.b) * x * x * x + Double(coefficients.c) * x * x + Double(coefficients.d) * x + Double(coefficients.e)
+            let x4 = Double(coefficients.a) * x * x * x * x
+            let x3 = Double(coefficients.b) * x * x * x
+            let x2 = Double(coefficients.c) * x * x
+            let x1 = Double(coefficients.d) * x
+            return x4 + x3 + x2 + x1 + Double(coefficients.e)
         }
-        return rSquared(polynomialFunction, observed: COORDINATES)
+        return rSquared(polynomialFunc: polynomialFunction, observed: COORDINATES)
     }
     
-    private static func rSquared(polynomialFunc: (x: Double) -> Double, observed: [(Double, Double)]) -> Double {
+    private static func rSquared(polynomialFunc: (Double) -> Double, observed: [(Double, Double)]) -> Double {
         var yTotal = 0.0
         var resSumOfSquares = 0.0
         var totSumOfSquares = 0.0
         var yMean: Double
         for coordinate in observed {
-            let residual = coordinate.1 - polynomialFunc(x: coordinate.0)
+            let residual = coordinate.1 - polynomialFunc(coordinate.0)
             resSumOfSquares += residual * residual
             yTotal += coordinate.1
         }

@@ -12,7 +12,7 @@ let POPULATION_SIZE = 64
 let STRONG_SURVIVORS = 2
 let SAMPLE_SIZE = 10
 let MUTATION_CHANCE_INVERSE: UInt32 = 8
-let FITNESS_STAGNATION_THRESHOLD = 100
+let FITNESS_STAGNATION_THRESHOLD = 400
 
 extension Array {
     func sample(sampleSize: Int) -> [Element] {
@@ -20,7 +20,7 @@ extension Array {
         var toReturn = [Element]()
         for _ in 0..<sampleSize {
             let indexToPop = Int(arc4random_uniform(UInt32(holder.endIndex)))
-            toReturn.append(holder.removeAtIndex(Int(indexToPop)))
+            toReturn.append(holder.remove(at: Int(indexToPop)))
         }
         return toReturn
     }
@@ -33,9 +33,9 @@ protocol ZeroArgumentInitable {
 class EvolutionaryOptimizer<Value: ZeroArgumentInitable, Fitness: Comparable> {
     typealias PopulationIndividual = Individual<Value, Fitness>
     typealias Comparator = (PopulationIndividual, PopulationIndividual) -> Bool
-    typealias SingleFitnessFunction = Value -> Fitness
-    typealias MultiFitnessFunction = [Value] -> [Fitness]
-    typealias PopulationFitnessFunction = [Value] -> [PopulationIndividual]
+    typealias SingleFitnessFunction = (Value) -> Fitness
+    typealias MultiFitnessFunction = ([Value]) -> [Fitness]
+    typealias PopulationFitnessFunction = ([Value]) -> [PopulationIndividual]
     
     var population = [PopulationIndividual]()
     var populationFitnessFunction: PopulationFitnessFunction
@@ -49,7 +49,7 @@ class EvolutionaryOptimizer<Value: ZeroArgumentInitable, Fitness: Comparable> {
         population = self.populationFitnessFunction(populationValues)
     }
     
-    internal static func mapSingleFitnessToPopulationFitness(singleFitnessFunction: SingleFitnessFunction) -> PopulationFitnessFunction {
+    internal static func mapSingleFitnessToPopulationFitness(singleFitnessFunction: @escaping SingleFitnessFunction) -> PopulationFitnessFunction {
         let functionToMap = { (value: Value) -> PopulationIndividual in
             return PopulationIndividual(value: value, fitness: singleFitnessFunction(value))
         }
@@ -58,7 +58,7 @@ class EvolutionaryOptimizer<Value: ZeroArgumentInitable, Fitness: Comparable> {
         }
     }
     
-    internal static func mapMultiFitnessToPopulationFitness(multiFitnessFunction: MultiFitnessFunction) -> PopulationFitnessFunction {
+    internal static func mapMultiFitnessToPopulationFitness(multiFitnessFunction: @escaping MultiFitnessFunction) -> PopulationFitnessFunction {
         return { (values: [Value]) -> [PopulationIndividual] in
             let fitnesses = multiFitnessFunction(values)
             var population = [PopulationIndividual]()
@@ -69,43 +69,43 @@ class EvolutionaryOptimizer<Value: ZeroArgumentInitable, Fitness: Comparable> {
         }
     }
     
-    convenience init(individualFitnessFunction: SingleFitnessFunction) {
-        let populationFitnessFunction = self.dynamicType.mapSingleFitnessToPopulationFitness(individualFitnessFunction)
+    convenience init(individualFitnessFunction: @escaping SingleFitnessFunction) {
+        let populationFitnessFunction = type(of: self).mapSingleFitnessToPopulationFitness(singleFitnessFunction: individualFitnessFunction)
         self.init(populationFitnessFunction: populationFitnessFunction)
     }
     
-    convenience init(individualFitnessFunction: SingleFitnessFunction, comparator: Comparator) {
-        let populationFitnessFunction = self.dynamicType.mapSingleFitnessToPopulationFitness(individualFitnessFunction)
+    convenience init(individualFitnessFunction: @escaping SingleFitnessFunction, comparator: @escaping Comparator) {
+        let populationFitnessFunction = type(of: self).mapSingleFitnessToPopulationFitness(singleFitnessFunction: individualFitnessFunction)
         self.init(populationFitnessFunction: populationFitnessFunction, comparator: comparator)
     }
     
-    convenience init(multiFitnessFunction: MultiFitnessFunction) {
-        let populationFitnessFunction = self.dynamicType.mapMultiFitnessToPopulationFitness(multiFitnessFunction)
+    convenience init(multiFitnessFunction: @escaping MultiFitnessFunction) {
+        let populationFitnessFunction = type(of: self).mapMultiFitnessToPopulationFitness(multiFitnessFunction: multiFitnessFunction)
         self.init(populationFitnessFunction: populationFitnessFunction)
     }
     
-    convenience init(multiFitnessFunction: MultiFitnessFunction, comparator: Comparator) {
-        let populationFitnessFunction = self.dynamicType.mapMultiFitnessToPopulationFitness(multiFitnessFunction)
+    convenience init(multiFitnessFunction: @escaping MultiFitnessFunction, comparator: @escaping Comparator) {
+        let populationFitnessFunction = type(of: self).mapMultiFitnessToPopulationFitness(multiFitnessFunction: multiFitnessFunction)
         self.init(populationFitnessFunction: populationFitnessFunction, comparator: comparator)
     }
     
-    init(populationFitnessFunction: PopulationFitnessFunction) {
+    init(populationFitnessFunction: @escaping PopulationFitnessFunction) {
         self.populationFitnessFunction = populationFitnessFunction
         generatePopulation()
     }
     
-    init(populationFitnessFunction: PopulationFitnessFunction, comparator: Comparator) {
+    init(populationFitnessFunction: @escaping PopulationFitnessFunction, comparator: @escaping Comparator) {
         self.populationFitnessFunction = populationFitnessFunction
         self.comparator = comparator
         generatePopulation()
     }
     
     func newGeneration() {
-        population.sortInPlace(comparator)
+        population.sort(by: comparator)
         var newPopulationValues = population[0..<STRONG_SURVIVORS].flatMap({ $0.value })
         for _ in STRONG_SURVIVORS..<POPULATION_SIZE {
-            var sample = population.sample(SAMPLE_SIZE).sort(comparator)
-            let offspring = Reproducer.reproduce(sample[0].value, sample[1].value)
+            var sample = population.sample(sampleSize: SAMPLE_SIZE).sorted(by: comparator)
+            let offspring = Reproducer.reproduce(parent1: sample[0].value, sample[1].value)
             newPopulationValues.append(offspring)
         }
         population = populationFitnessFunction(newPopulationValues)
@@ -130,7 +130,7 @@ class EvolutionaryOptimizer<Value: ZeroArgumentInitable, Fitness: Comparable> {
     }
     
     var strongestIndividual: Individual<Value, Fitness> {
-        return population.minElement(comparator)!
+        return population.min(by: comparator)!
     }
 }
 
@@ -144,10 +144,14 @@ struct Individual<Value: ZeroArgumentInitable, Fitness: Comparable>: CustomStrin
     }
     
     static func randomValue() -> Value {
-        let data = NSMutableData(length: sizeof(Value))
+        let data = NSMutableData(length: MemoryLayout<Value>.size)
         var newValue = Value()
-        SecRandomCopyBytes(kSecRandomDefault, sizeof(Value), UnsafeMutablePointer<UInt8>(data!.mutableBytes))
-        data!.getBytes(&newValue, length: sizeof(Value))
+        let error = SecRandomCopyBytes(kSecRandomDefault, MemoryLayout<Value>.size, data!.mutableBytes)
+        if error != errSecSuccess {
+            print(error)
+            exit(1)
+        }
+        data!.getBytes(&newValue, length: MemoryLayout<Value>.size)
         return newValue
     }
     
@@ -160,13 +164,13 @@ class Reproducer<Value: ZeroArgumentInitable> {
     static func reproduce(parent1: Value, _ parent2: Value) -> Value {
         var parent1Accessible = parent1
         var parent2Accessible = parent2
-        let parent1Data = NSData(bytes: &parent1Accessible, length: sizeof(Value))
-        let parent2Data = NSData(bytes: &parent2Accessible, length: sizeof(Value))
+        let parent1Data = NSData(bytes: &parent1Accessible, length: MemoryLayout<Value>.size)
+        let parent2Data = NSData(bytes: &parent2Accessible, length: MemoryLayout<Value>.size)
         
-        let newData = NSMutableData(capacity: sizeof(Value))
+        let newData = NSMutableData(capacity: MemoryLayout<Value>.size)
         var newValue = Value()
         
-        for n in 0..<sizeof(Value) {
+        for n in 0..<MemoryLayout<Value>.size {
             let range = NSRange(n...n)
             var parent1Byte: UInt8 = 0
             var parent2Byte: UInt8 = 0
@@ -180,10 +184,10 @@ class Reproducer<Value: ZeroArgumentInitable> {
                 newByte = (arc4random() % 2 == 0) ? randomMask | newByte : ~randomMask & newByte
             }
             
-            newData!.replaceBytesInRange(range, withBytes: &newByte)
+            newData!.replaceBytes(in: range, withBytes: &newByte)
         }
         
-        newData!.getBytes(&newValue, length: sizeof(Value))
+        newData!.getBytes(&newValue, length: MemoryLayout<Value>.size)
         return newValue
     }
 }

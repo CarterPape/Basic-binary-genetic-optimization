@@ -30,7 +30,7 @@ func + (left: PointInR3, right: PointInR3) -> PointInR3 {
     return PointInR3(x: left.x + right.x, y: left.y + right.y, z: left.z + right.z)
 }
 
-func += (inout left: PointInR3, right: PointInR3) {
+func += (left: inout PointInR3, right: PointInR3) {
     left = left + right
 }
 
@@ -41,27 +41,27 @@ func log(point: PointInR3) -> PointInR3 {
     return PointInR3(x: x, y: y, z: z)
 }
 
-func sqrt(point: PointInR3) -> PointInR3 {
+func sqrt(_ point: PointInR3) -> PointInR3 {
     let x = point.x.isNormal ? max(0, sqrt(abs(point.x))) : 0
     let y = point.y.isNormal ? max(0, sqrt(abs(point.y))) : 0
     let z = point.z.isNormal ? max(0, sqrt(abs(point.z))) : 0
     return PointInR3(x: x, y: y, z: z)
 }
 
-func square(x: Float) -> Double {
+func square(_ x: Float) -> Double {
     return Double(x) * Double(x)
 }
 
-func squareDiff(x: Float, _ y: Float) -> Double {
+func squareDiff(_ x: Float, _ y: Float) -> Double {
     return square(x - y)
 }
 
-func squareOfDistanceBetween(p1: PointInR3, _ p2: PointInR3) -> Double {
+func squareOfDistanceBetween(_ p1: PointInR3, _ p2: PointInR3) -> Double {
     return squareDiff(p1.x, p2.x) + squareDiff(p1.y, p2.y) + squareDiff(p1.z, p2.z)
 }
 
 class PointInR3FitnessTester {
-    static func goalPoint(points: [PointInR3]) -> PointInR3 {
+    static func goalPoint(_ points: [PointInR3]) -> PointInR3 {
         var avgPoint = PointInR3(x: 0, y: 0, z: 0)
         for point in points {
             if (point.isNormal) {
@@ -71,7 +71,7 @@ class PointInR3FitnessTester {
         return sqrt(avgPoint)
     }
     
-    static func fitness(points: [PointInR3]) -> [Double] {
+    static func fitness(_ points: [PointInR3]) -> [Double] {
         var fitnesses = [Double]()
         let avgPoint = self.goalPoint(points)
         for point in points {
